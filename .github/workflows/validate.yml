@@ -1,0 +1,39 @@
+name: Validate Skills
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate all skills
+        run: ./scripts/validate.sh
+
+      - name: Check for placeholder leaks
+        run: |
+          # Ensure no real AWS account IDs, ARNs, or keys slipped in
+          echo "Checking for leaked credentials or account IDs..."
+          ISSUES=0
+
+          # AWS access key pattern (AKIA...)
+          if grep -rn 'AKIA[0-9A-Z]\{16\}' skills/; then
+            echo "::error::Found potential AWS access key in skills!"
+            ISSUES=$((ISSUES + 1))
+          fi
+
+          # 12-digit AWS account ID (not in placeholder patterns)
+          if grep -rPn '(?<!\<)\b[0-9]{12}\b(?!\>)' skills/ --include="*.md" | grep -v 'account-id' | grep -v 'xxxxxxxxxxxx'; then
+            echo "::warning::Found potential hardcoded AWS account ID"
+          fi
+
+          if [ $ISSUES -gt 0 ]; then
+            exit 1
+          fi
+
+          echo "No credential leaks detected."
