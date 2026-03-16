@@ -36,17 +36,23 @@ After installation, restart your OpenClaw session. All AWS skills are immediatel
 
 ## What's Included
 
-### Skills
+### Skills (47 services)
 
 | Category | Skills | Description |
 |----------|--------|-------------|
-| **Compute** | `ec2`, `lambda`, `ecs` | Instance management, serverless functions, container orchestration |
+| **Compute** | `ec2`, `lambda`, `ecs`, `eks`, `lightsail`, `autoscaling` | Instances, serverless, containers, Kubernetes, simplified VPS, auto scaling |
 | **Storage** | `s3` | Bucket operations, object management, lifecycle policies |
-| **Networking** | `vpc` | VPCs, subnets, security groups, NACLs |
-| **Database** | `rds`, `dynamodb` | Relational and NoSQL database operations |
-| **IaC** | `cloudformation` | Stack management, template validation, drift detection |
-| **Observability** | `cloudwatch` | Logs, metrics, alarms, dashboards |
-| **Security** | `iam` | Users, roles, policies, access analysis |
+| **Networking** | `vpc`, `elb`, `cloudfront`, `route53`, `apigateway` | VPCs, load balancers, CDN, DNS, API management |
+| **Database** | `rds`, `dynamodb`, `elasticache` | Relational, NoSQL, and in-memory caching |
+| **IaC / Deploy** | `cloudformation`, `cdk`, `sam` | Stack management, CDK synthesis, serverless application model |
+| **CI/CD** | `codepipeline`, `codebuild`, `codecommit`, `codedeploy` | Pipelines, builds, source control, deployments |
+| **Messaging** | `sqs`, `sns`, `ses`, `eventbridge` | Queues, notifications, email, event buses |
+| **Security** | `iam`, `kms`, `secrets-manager`, `waf`, `guardduty`, `cognito`, `acm` | Identity, encryption, secrets, firewall, threat detection, auth, certificates |
+| **Observability** | `cloudwatch`, `cloudtrail`, `config` | Logs/metrics/alarms, audit trails, compliance rules |
+| **Data & Analytics** | `glue`, `athena`, `kinesis` | ETL, SQL queries on S3, real-time streaming |
+| **ML / AI** | `sagemaker`, `bedrock` | ML training/hosting, foundation models |
+| **Management** | `organizations`, `ssm`, `cost-explorer` | Multi-account, fleet management, cost analysis |
+| **Developer Tools** | `ecr`, `appsync`, `step-functions` | Container registry, GraphQL APIs, workflow orchestration |
 
 ### Configuration
 
@@ -64,14 +70,14 @@ After installation, restart your OpenClaw session. All AWS skills are immediatel
 
 ```
 claw-aws/
-├── skills/                  # One directory per AWS service
+├── skills/                  # One directory per AWS service (47 services)
 │   ├── s3/
 │   │   └── SKILL.md
 │   ├── ec2/
 │   │   └── SKILL.md
 │   ├── lambda/
 │   │   └── SKILL.md
-│   └── ...
+│   └── ...                  # See full list in Skills table above
 ├── templates/               # Skill authoring template
 │   └── SKILL_TEMPLATE.md
 ├── soul/
@@ -108,18 +114,17 @@ See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for full details.
 
 We're tracking requested skills in [GitHub Issues](../../issues?q=is%3Aissue+label%3A%22new+skill%22). Grab one!
 
-Some high-priority gaps:
-- `eks` — Kubernetes on AWS
-- `route53` — DNS management
-- `cloudfront` — CDN and distributions
-- `sqs` / `sns` — Messaging and notifications
-- `step-functions` — Workflow orchestration
-- `secrets-manager` — Secrets management
-- `ecr` — Container registry
-- `cdk` — AWS CDK operations (separate from CloudFormation)
-- `sam` — Serverless Application Model
-- `bedrock` — Foundation model access
-- `cost-explorer` — Cost analysis and optimization
+Some services we'd love to cover next:
+- `redshift` — Data warehouse
+- `opensearch` — Search and log analytics
+- `msk` — Managed Kafka
+- `transfer-family` — Managed SFTP/FTPS
+- `app-runner` — Simplified container hosting
+- `amplify` — Full-stack web/mobile development
+- `backup` — Centralized backup management
+- `control-tower` — Multi-account governance
+- `service-catalog` — Self-service provisioning
+- `datasync` — Data transfer and replication
 
 ## Philosophy
 
